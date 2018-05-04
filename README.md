@@ -5,7 +5,7 @@
 A Desktop clock project using AVR8 microcontroller and 32-by-16 dots LED matrix
 module.
 
-![Photo of build](https://github.com/kayeks-elec/dmclock/blob/master/Assets/build.jpg "Photo of build")
+![Photo of a build](https://github.com/kayeks-elec/dmclock/blob/master/Assets/build.jpg "Photo of a build")
 
 ## Features
   - Display ambient temperature
@@ -47,13 +47,6 @@ monochromatic 32-by-16 dots in matrix arrangement. Therefore, this project
 would be portable to other devices which have similar viewing areas if you
 replace the device-specific interfacing routines.
 
-Any GPS module which meets requirements below woule be available for this
-project:
-  - **Serial format**  
-    8N1 at 9,600 baud
-  - **Messages**  
-    NMEA 0183 messages contain `$GPGGA` and `$GPZDA` sentences
-
 ## GPS clock correction
 
 External GPS modules can be connected to GPS Receiver connector (CN3) for clock
@@ -66,8 +59,21 @@ The pin assignment for GPS Receiver connector:
 | 1 | +5V power supply, fused by 100 mA polyfuse |
 | 2 | GND |
 | 3 | not connected |
-| 4 | GPS receiver source, 5 mA current loop driver |
+| 4 | GPS receiver source |
 | 5 | GPS receiver sink |
+
+Note:  
+The data line through pins 4 and 5 constitutes a current loop driver, and
+its driving current is 5 mA, which is similar to the conventional MIDI
+interfaces.
+
+Any GPS module which meets requirements below woule be available for this
+project:
+  - **Serial format**  
+    8N1 at 9,600 baud
+  - **Messages**  
+    NMEA 0183 messages contain `$GPGGA` and `$GPZDA` sentences
+
 
 ## Serial message output
 
@@ -84,9 +90,9 @@ D([0-9][0-9])-([01][0-9])-([0-3][0-9])\r\n
         \3: days
 ```
 
-#### Date local clock date
+#### Date local clock time
 ```text
-D([0-9][0-9])-([01][0-9])-([0-3][0-9])\r\n
+T([0-9][0-9])-([01][0-9])-([0-3][0-9])\r\n
   where \1: hours
         \2: minutes
         \3: seconds
