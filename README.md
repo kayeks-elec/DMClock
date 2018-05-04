@@ -5,6 +5,8 @@
 A Desktop clock project using AVR8 microcontroller and 32-by-16 dots LED matrix
 module.
 
+![Photo of build](https://github.com/kayeks-elec/dmclock/blob/master/Assets/build.jpg "Photo of build")
+
 ## Features
   - Display ambient temperature
   - Clock backup during power off
