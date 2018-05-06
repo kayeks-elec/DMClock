@@ -44,9 +44,9 @@ PROGMEM uint16_t const font_index_m0410[128] = {
 };
 // Bitmap for font "M0410"
 PROGMEM uint8_t const font_bitmap_m0410[] = {
-    // (+  0) Unimplemented character
+    // (+  0) unimplemented character
     0x0a, 0x05, 0x0a, 0x05, 0x0a, 0x05, 0x0a, 0x05, 0x0a, 0x05,
-    // (+ 10) Space
+    // (+ 10) space
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     // (+ 20) -
     0x00, 0x00, 0x00, 0x00, 0x00, 0x07, 0x07, 0x00, 0x00, 0x00,
@@ -105,9 +105,9 @@ PROGMEM uint16_t const font_index_m0610[128] = {
 };
 // Bitmap for font "M0610"
 PROGMEM uint8_t const font_bitmap_m0610[] = {
-    // (+  0) Unimplemented character
+    // (+  0) unimplemented character
     0x2a, 0x15, 0x2a, 0x15, 0x2a, 0x15, 0x2a, 0x15, 0x2a, 0x15,
-    // (+ 10) Space
+    // (+ 10) space
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     // (+ 20) %
     0x00, 0x00, 0x38, 0x2b, 0x37, 0x0e, 0x1c, 0x3b, 0x35, 0x37,
@@ -131,14 +131,14 @@ PROGMEM uint8_t const font_bitmap_m0610[] = {
     0x1e, 0x3f, 0x33, 0x33, 0x1e, 0x3f, 0x33, 0x33, 0x3f, 0x1e,
     // (+120) 9
     0x1e, 0x3f, 0x33, 0x33, 0x33, 0x3f, 0x1f, 0x03, 0x1f, 0x1e,
-    // (+130) Degree celsius
+    // (+130) degree celsius
     0x00, 0x38, 0x2f, 0x3f, 0x18, 0x18, 0x18, 0x18, 0x1f, 0x0f,
-    // (+140) Degree fahrenheit
+    // (+140) degree fahrenheit
     0x00, 0x38, 0x2f, 0x3f, 0x18, 0x1e, 0x1e, 0x18, 0x18, 0x18
 };
 
 // Index table for font "PP05"
-PROGMEM uint16_t const font_index_pp05[160] = {
+PROGMEM uint16_t const font_index_pp05[162] = {
     // 0x00
       0,   0,   0,   0,   0,   0,   0,   0,
       0,   0,   0,   0,   0,   0,   0,   0,
@@ -167,13 +167,15 @@ PROGMEM uint16_t const font_index_pp05[160] = {
     582, 588, 594, 600, 606, 612, 618, 624,
     630, 636, 642, 648, 654, 660, 666, 672,
     // 0x90
-    678, 684, 690, 696, 702, 708,   0,   0,
-      0,   0,   0,   0,   0,   0,   0,   0
+    678, 684, 690, 696, 702, 708, 714, 720,
+    726, 732, 738, 744, 750, 756, 762, 768,
+    // 0xa0
+    774, 780
 };
 // Bitmap for font "PP05"
 // (each character has 1 width byte on its head)
 PROGMEM uint8_t const font_wbitmap_pp05[] = {
-    // (+  0) Unimplemented character
+    // (+  0) unimplemented character
     3, 0x05, 0x02, 0x05, 0x02, 0x05,
     // (+  6) space
     3, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -365,29 +367,29 @@ PROGMEM uint8_t const font_wbitmap_pp05[] = {
     3, 0x06, 0x02, 0x03, 0x02, 0x06,
     // (+570) ~
     3, 0x07, 0x00, 0x00, 0x00, 0x00,
-    // (+576) \177 Degree
+    // (+576) \177 degree
     3, 0x07, 0x05, 0x07, 0x00, 0x00,
-    // (+582) \200 Button icon <up>
+    // (+582) \200 button icon <up>
     8, 0x08, 0x1c, 0x3e, 0x00, 0x00,
-    // (+588) \201 Button icon <down>
+    // (+588) \201 button icon <down>
     8, 0x00, 0x3e, 0x1c, 0x08, 0x00,
-    // (+594) \202 Button icon <next>
+    // (+594) \202 button icon <next>
     8, 0x24, 0x36, 0x36, 0x24, 0x00,
-    // (+600) \203 Button icon <changevalue>
+    // (+600) \203 button icon <changevalue>
     8, 0x00, 0x04, 0x6e, 0x04, 0x00,
-    // (+606) \204 Button icon <discard>
+    // (+606) \204 button icon <discard>
     8, 0x24, 0x18, 0x18, 0x24, 0x00,
-    // (+612) \205 Button icon <save>
+    // (+612) \205 button icon <save>
     8, 0x04, 0x2c, 0x38, 0x10, 0x00,
-    // (+618) \206 Ballot box
+    // (+618) \206 ballot box
     5, 0x1f, 0x11, 0x11, 0x11, 0x1f,
-    // (+624) \207 Ballot box with check
+    // (+624) \207 ballot box with check
     5, 0x1f, 0x13, 0x15, 0x19, 0x1f,
-    // (+630) \210 Lower single dot
+    // (+630) \210 lower single dot
     1, 0x00, 0x00, 0x00, 0x01, 0x00,
-    // (+636) \211 Higher single dot
+    // (+636) \211 higher single dot
     1, 0x00, 0x01, 0x00, 0x00, 0x00,
-    // (+642) \212 Wavedash
+    // (+642) \212 wavedash
     4, 0x00, 0x00, 0x0d, 0x0b, 0x00,
     // (+648) \213 condensed string block "Brightness" (first quarter)
     8, 0xe2, 0xac, 0xca, 0xaa, 0xea,
@@ -397,20 +399,44 @@ PROGMEM uint8_t const font_wbitmap_pp05[] = {
     8, 0x80, 0xd8, 0x95, 0x95, 0xd4,
     // (+666) \216 condensed string block "Brightness" (fourth quarter)
     8, 0x00, 0xdb, 0x52, 0x89, 0xdb,
-    // (+672) \217 Brightness bar image <auto> (first half)
+    // (+672) \217 brightness bar image <auto> (first half)
     8, 0x00, 0xff, 0xd5, 0xaa, 0xff,
-    // (+678) \220 Brightness bar image <auto> (last half)
+    // (+678) \220 brightness bar image <auto> (last half)
     8, 0x00, 0xff, 0x55, 0xab, 0xff,
-    // (+684) \221 Brightness bar image <1> (first half)
+    // (+684) \221 brightness bar image <1> (first half)
     8, 0x00, 0xff, 0xf0, 0xf8, 0xff,
-    // (+690) \222 Brightness bar image <1> (last half)
+    // (+690) \222 brightness bar image <1> (last half)
     8, 0x00, 0xff, 0x01, 0x01, 0xff,
-    // (+696) \223 Brightness bar image <2..4> (first half) or <4> (last half)
+    // (+696) \223 brightness bar image <2..4> (first half) or <4> (last half)
     8, 0x00, 0xff, 0xff, 0xff, 0xff,
-    // (+702) \224 Brightness bar image <2> (last half)
+    // (+702) \224 brightness bar image <2> (last half)
     8, 0x00, 0xff, 0x01, 0x81, 0xff,
-    // (+708) \225 Brightness bar image <3> (last half)
-    8, 0x00, 0xff, 0xf1, 0xf9, 0xff
+    // (+708) \225 brightness bar image <3> (last half)
+    8, 0x00, 0xff, 0xf1, 0xf9, 0xff,
+    // (+714) \226 condensed string block "Tracking.." (first quarter)
+    8, 0xe0, 0x5b, 0x51, 0x52, 0x53,
+    // (+720) \227 condensed string block "Tracking.." (second quarter)
+    8, 0x04, 0x35, 0xa6, 0xa5, 0xb5,
+    // (+726) \230 condensed string block "Tracking.." (third quarter)
+    8, 0x40, 0x18, 0x55, 0x54, 0x55,
+    // (+732) \231 condensed string block "Tracking.." (fourth quarter)
+    5, 0x00, 0x18, 0x08, 0x18, 0x15,
+    // (+738) \232 Dot blinker <1>
+    3, 0x00, 0x03, 0x07, 0x07, 0x00,
+    // (+744) \233 Dot blinker <2>
+    3, 0x00, 0x05, 0x07, 0x07, 0x00,
+    // (+750) \234 Dot blinker <3>
+    3, 0x00, 0x06, 0x07, 0x07, 0x00,
+    // (+756) \235 Dot blinker <4>
+    3, 0x00, 0x07, 0x06, 0x07, 0x00,
+    // (+762) \236 Dot blinker <5>
+    3, 0x00, 0x07, 0x07, 0x06, 0x00,
+    // (+768) \237 Dot blinker <6>
+    3, 0x00, 0x07, 0x07, 0x05, 0x00,
+    // (+768) \237 Dot blinker <7>,
+    3, 0x00, 0x07, 0x07, 0x03, 0x00,
+    // (+768) \237 Dot blinker <8>
+    3, 0x00, 0x07, 0x03, 0x07, 0x00
 };
 
 // Clear back frame buffer

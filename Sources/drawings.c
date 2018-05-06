@@ -383,7 +383,7 @@ void draw_temperature(bool result, uint8_t sign, uint8_t integer,
 }
 
 // Draw GPS tracking status
-void draw_gps_status(uint8_t fix, uint8_t sats_in_use, uint16_t mask) {
+void draw_gps_status(uint8_t fix, uint8_t blink_phase, uint16_t mask) {
     // Bit mask of drawable elements
     //   mask<15:3>  reserved
     //       <2>     GPS tracking status "No GPS"/"Unfixed"/"2D fix"/"3D fix"
@@ -393,57 +393,82 @@ void draw_gps_status(uint8_t fix, uint8_t sats_in_use, uint16_t mask) {
     if (mask & (1 << 2)) {
         switch (fix) {
         case 0xff:
-            display_putc(FONT_PP05, 31, 0, 'N');
-            display_putc(FONT_PP05, 26, 0, 'o');
+            display_putc(FONT_PP05, 31, 0, '-');
+            display_putc(FONT_PP05, 27, 0, '-');
+            display_putc(FONT_PP05, 23, 0, '-');
+            break;
+        case 0x00:
+            display_putc(FONT_PP05, 31, 0, '\232' + blink_phase);
+            display_putc(FONT_PP05, 28, 0, '\226');
+            display_putc(FONT_PP05, 20, 0, '\227');
+            display_putc(FONT_PP05, 12, 0, '\230');
+            display_putc(FONT_PP05, 4, 0, '\231');
+            break;
+        case 0x01:
+            display_putc(FONT_PP05, 33, 1, '\205');
+            display_putc(FONT_PP05, 25, 0, 'G');
+            display_putc(FONT_PP05, 21, 0, 'P');
+            display_putc(FONT_PP05, 17, 0, 'S');
+            break;
+        case 0x02:
+            display_putc(FONT_PP05, 33, 1, '\205');
+            display_putc(FONT_PP05, 25, 0, 'D');
             display_putc(FONT_PP05, 21, 0, 'G');
             display_putc(FONT_PP05, 17, 0, 'P');
             display_putc(FONT_PP05, 13, 0, 'S');
             break;
-        case 0x00:
-            display_putc(FONT_PP05, 31, 0, 'U');
-            display_putc(FONT_PP05, 27, 0, 'n');
-            display_putc(FONT_PP05, 23, 0, 'f');
-            display_putc(FONT_PP05, 20, 0, 'i');
-            display_putc(FONT_PP05, 18, 0, 'x');
+        case 0x03:
+            display_putc(FONT_PP05, 33, 1, '\205');
+            display_putc(FONT_PP05, 25, 0, 'P');
+            display_putc(FONT_PP05, 21, 0, 'P');
+            display_putc(FONT_PP05, 17, 0, 'S');
+            break;
+        case 0x04:
+            display_putc(FONT_PP05, 33, 1, '\205');
+            display_putc(FONT_PP05, 25, 0, 'R');
+            display_putc(FONT_PP05, 21, 0, 'T');
+            display_putc(FONT_PP05, 17, 0, 'K');
+            break;
+        case 0x05:
+            display_putc(FONT_PP05, 33, 1, '\205');
+            display_putc(FONT_PP05, 25, 0, 'F');
+            display_putc(FONT_PP05, 21, 0, 'l');
+            display_putc(FONT_PP05, 18, 0, '.');
+            display_putc(FONT_PP05, 15, 0, 'R');
+            display_putc(FONT_PP05, 11, 0, 'T');
+            display_putc(FONT_PP05, 7, 0, 'K');
+            break;
+        case 0x06:
+            display_putc(FONT_PP05, 33, 1, '\205');
+            display_putc(FONT_PP05, 25, 0, 'D');
+            display_putc(FONT_PP05, 21, 0, '.');
+            display_putc(FONT_PP05, 18, 0, 'R');
             display_putc(FONT_PP05, 14, 0, 'e');
-            display_putc(FONT_PP05, 10, 0, 'd');
+            display_putc(FONT_PP05, 10, 0, 'c');
+            display_putc(FONT_PP05, 6, 0, 'k');
+            display_putc(FONT_PP05, 2, 0, '.');
             break;
-        case 0x01:
-            if (sats_in_use == 3) {
-                display_putc(FONT_PP05, 31, 0, '2');
-                display_putc(FONT_PP05, 27, 0, 'D');
-                display_putc(FONT_PP05, 22, 0, 'f');
-                display_putc(FONT_PP05, 19, 0, 'i');
-                display_putc(FONT_PP05, 17, 0, 'x');
-            } else if (sats_in_use >= 4) {
-                display_putc(FONT_PP05, 31, 0, '3');
-                display_putc(FONT_PP05, 27, 0, 'D');
-                display_putc(FONT_PP05, 22, 0, 'f');
-                display_putc(FONT_PP05, 19, 0, 'i');
-                display_putc(FONT_PP05, 17, 0, 'x');
-            }
+        case 0x07:
+            display_putc(FONT_PP05, 33, 1, '\205');
+            display_putc(FONT_PP05, 25, 0, 'M');
+            display_putc(FONT_PP05, 19, 0, 'a');
+            display_putc(FONT_PP05, 15, 0, 'n');
+            display_putc(FONT_PP05, 11, 0, 'u');
+            display_putc(FONT_PP05, 7, 0, 'a');
+            display_putc(FONT_PP05, 3, 0, 'l');
             break;
-        case 0x02:
-            display_putc(FONT_PP05, 31, 0, 'D');
-            display_putc(FONT_PP05, 27, 0, 'G');
-            display_putc(FONT_PP05, 23, 0, 'P');
-            display_putc(FONT_PP05, 19, 0, 'S');
+        case 0x08:
+            display_putc(FONT_PP05, 33, 1, '\205');
+            display_putc(FONT_PP05, 25, 0, 'S');
+            display_putc(FONT_PP05, 21, 0, 'i');
+            display_putc(FONT_PP05, 19, 0, 'm');
+            display_putc(FONT_PP05, 13, 0, 'u');
+            display_putc(FONT_PP05, 9, 0, 'l');
+            display_putc(FONT_PP05, 6, 0, '.');
             break;
         default:
             break;
         }
-        if (fix != 0xff) {
-            if (sats_in_use > 99) {
-                display_putc(FONT_PP05, 19, 9, '9');
-                display_putc(FONT_PP05, 19, 5, '9');
-                display_putc(FONT_PP05, 19, 2, '+');
-            } else if (sats_in_use >= 10) {
-                display_putc(FONT_PP05, 6, 0, '0' + sats_in_use / 10);
-                display_putc(FONT_PP05, 2, 0, '0' + sats_in_use % 10);
-            } else {
-                display_putc(FONT_PP05, 2, 0, '0' + sats_in_use);
-            }
-        }        
     }
 }
 
@@ -902,17 +927,17 @@ void draw_config_relay_event_mask(uint8_t i, event_t* ev, uint8_t index_dow,
     }
     // Draw ballot box
     if (mask & (1 << 6)) {
-        display_putc(FONT_PP05, 17, 11, enabled ? '\207' : '\206');
+        display_putc(FONT_PP05, 16, 11, enabled ? '\207' : '\206');
     }
     // Draw value string "yes"/"no"
     if (mask & (1 << 5)) {
         if (enabled) {
-            display_putc(FONT_PP05, 10, 11, 'y');
-            display_putc(FONT_PP05, 6, 11, 'e');
-            display_putc(FONT_PP05, 2, 11, 's');
+            display_putc(FONT_PP05, 9, 11, 'o');
+            display_putc(FONT_PP05, 5, 11, 'f');
+            display_putc(FONT_PP05, 2, 11, 'f');
         } else {
-            display_putc(FONT_PP05, 9, 11, 'n');
-            display_putc(FONT_PP05, 5, 11, 'o');
+            display_putc(FONT_PP05, 8, 11, 'o');
+            display_putc(FONT_PP05, 4, 11, 'n');
         }
     }
     // Draw event mask indicator dots

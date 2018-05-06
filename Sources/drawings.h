@@ -24,7 +24,7 @@ void draw_date_dayofweek(ctime_t* ct, dow_t dow, uint16_t mask);
 void draw_date_year(ctime_t* ct, uint16_t mask);
 void draw_temperature(bool result, uint8_t sign, uint8_t integer,
     uint16_t fraction_x10k, uint16_t mask);
-void draw_gps_status(uint8_t fix, uint8_t sats_in_use, uint16_t mask);
+void draw_gps_status(uint8_t fix, uint8_t blink_phase, uint16_t mask);
 void draw_config_use_gps(bool use_gps, uint16_t mask);
 void draw_config_set_time_top(uint16_t mask);
 void draw_config_set_time_mod(ctime_t* ct, dow_t dow, uint8_t icon_l,

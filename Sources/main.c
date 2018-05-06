@@ -961,7 +961,7 @@ void task5_draw_screen() {
         t5_set_timestamp(&env.task5.draw_screen);
 
         // Set blinker
-        blinker = ((uint8_t) ticks >> 3) & 0x01 ? ~0 : 0;
+        blinker = (ticks >> 3) & 0x01 ? ~0 : 0;
         // Clear back frame buffer
         display_clear();
         switch (env.status & ST_MASK) {
@@ -999,7 +999,8 @@ void task5_draw_screen() {
                 break;
             case ST_NORMAL_GPS_STATUS:
                 // Draw GPS connection/tracking status
-                draw_gps_status(env.gps.status, env.gps.sats_in_use, ~0);
+                draw_gps_status(env.gps.status,
+                    (ticks >> 5) & 0x07, ~0);
                 break;
             default:
                 break;
@@ -1124,13 +1125,19 @@ void task5_draw_screen() {
 
 // T5: Read light sensor and set brightness
 void task5_set_brightness() {
+    static uint8_t c_level = 1;
+    uint8_t level;
+    
     if (t5_check_triggered(&env.task5.get_light_level)) {
         t5_set_timestamp(&env.task5.get_light_level);
 
         // Read light sensor ADC
         light_adc = read_adc(2);
-        // Set brightness with the ADC value
-        set_brightness(adc_to_brightness_level(light_adc));
+        // Convert it to brightness level and apply
+        level = adc_to_brightness_level(light_adc, c_level);
+        set_brightness(level);
+        // Preserve this time's level for next decision
+        c_level = level;
     }
 }
 
@@ -1198,7 +1205,7 @@ void task6_serial_output() {
         ringbuf_put(&tx, '0' + env.ct.s % 10);
         ringbuf_put(&tx, '\r');
         ringbuf_put(&tx, '\n');
-        // Temperature
+        // Ambient temperature
         ringbuf_put(&tx, 'A');
         if (env.temperature.result == 0) {
             ringbuf_put(&tx, env.temperature.value.sign ? '-' : '+');
@@ -1229,8 +1236,11 @@ void task9_handle_rx() {
     uint8_t c;
     zda_t zda;
     gga_t gga;
-    
+
     while (!ringbuf_get(&rx, &c)) {
+        if (c == '$') {
+            linebuf_clear(&env.msg);
+        }
         linebuf_put(&env.msg, c);
         if (c == '\n') {
             if (strncmp((const char*) env.msg.data, "$GPGGA,", 7) == 0) {
