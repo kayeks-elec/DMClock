@@ -24,7 +24,7 @@ module.
       - 3V DC from CR2032 cell, 10 nA typ. for clock backup
   - **Dimensions**  
     145 mm × 54 mm × 46 mm, viewing area 82 mm × 41 mm
-  - **Controller**  
+  - **Devices**  
       - ATMEGA328P, clocked at 20 MHz
       - DS1307+ real-time clock
   - **Inputs**  
@@ -47,14 +47,27 @@ monochromatic 32-by-16 dots in matrix arrangement. Therefore, this project
 would be portable to other devices which have similar viewing areas if you
 replace the device-specific interfacing routines.
 
+## Microcontroller
+
+This project uses an ATMEGA328P microcontroller.
+
+### Clock configuration
+
+The clock is 20 MHz from crystal oscillator (ceramic resonator also works but not recommended).
+
+### Flashing firmware
+
+Flash firmware `Firmware/DotMatrixClock2018.hex` directly by ISP, with fuses
+Low byte **0xFF**, High byte **0xD9**, and Extended byte **0x07**.
+
 ## GPS clock correction
 
 External GPS modules can be connected to GPS Receiver connector (CN3) for clock
 time correction.
 
-The pin assignment for GPS Receiver connector:
+The pin assignment for GPS Receiver connector (CN3):
 
-| CN3 | Pin description |
+| Pin # | Description |
 | --: | :-- |
 | 1 | +5V power supply, fused by 100 mA polyfuse |
 | 2 | GND |
@@ -73,7 +86,6 @@ project:
     8N1 at 9,600 baud
   - **Messages**  
     NMEA 0183 messages contain `$GPGGA` and `$GPZDA` sentences
-
 
 ## Serial message output
 
