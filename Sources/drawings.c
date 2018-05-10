@@ -865,7 +865,7 @@ void draw_config_relay_event_mask(uint8_t i, event_t* ev, uint8_t index_dow,
     //       <8>    event number
     //       <7>    day-of-week string
     //       <6>    ballot box
-    //       <5>    value string "yes"/"no"
+    //       <5>    value string "on"/"off"
     //       <4:2>  reserved
     //       <1>    left button icon <changevalue>
     //       <0>    right button icon <save>
@@ -929,15 +929,15 @@ void draw_config_relay_event_mask(uint8_t i, event_t* ev, uint8_t index_dow,
     if (mask & (1 << 6)) {
         display_putc(FONT_PP05, 16, 11, enabled ? '\207' : '\206');
     }
-    // Draw value string "yes"/"no"
+    // Draw value string "on"/"off"
     if (mask & (1 << 5)) {
         if (enabled) {
+            display_putc(FONT_PP05, 8, 11, 'o');
+            display_putc(FONT_PP05, 4, 11, 'n');
+        } else {
             display_putc(FONT_PP05, 9, 11, 'o');
             display_putc(FONT_PP05, 5, 11, 'f');
             display_putc(FONT_PP05, 2, 11, 'f');
-        } else {
-            display_putc(FONT_PP05, 8, 11, 'o');
-            display_putc(FONT_PP05, 4, 11, 'n');
         }
     }
     // Draw event mask indicator dots

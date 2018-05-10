@@ -94,7 +94,7 @@ is 5 V. Serial format is 8N1 at 9,600 baud.
 
 ### Message strings
 
-#### Date local clock date
+#### Local clock date
 ```text
 D([0-9][0-9])-([01][0-9])-([0-3][0-9])\r\n
   where \1: last two digits of years
@@ -102,9 +102,9 @@ D([0-9][0-9])-([01][0-9])-([0-3][0-9])\r\n
         \3: days
 ```
 
-#### Date local clock time
+#### Local clock time
 ```text
-T([0-9][0-9])-([01][0-9])-([0-3][0-9])\r\n
+T([0-9][0-9]):([01][0-9]):([0-3][0-9])\r\n
   where \1: hours
         \2: minutes
         \3: seconds
@@ -123,4 +123,4 @@ A xxx.xx\r\n
 ## License
 
 Modified BSD License  
-See `LICENSE.txt` for details.
+See `LICENSE` for details.
